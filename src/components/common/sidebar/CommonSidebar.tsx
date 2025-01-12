@@ -3,6 +3,7 @@ import {
   Sidebar,
   SidebarBody,
   SidebarLink,
+  useSidebar,
 } from '@/components/common/UI/sidebar.tsx'
 import {
   IconArrowLeft,
@@ -18,30 +19,22 @@ export function CommonSidebar() {
     {
       label: 'Dashboard',
       href: '#',
-      icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
-      ),
+      icon: <IconBrandTabler className="h-6 w-6 flex-shrink-0" />,
     },
     {
       label: 'Profile',
       href: '#',
-      icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
-      ),
+      icon: <IconUserBolt className="h-6 w-6 flex-shrink-0" />,
     },
     {
       label: 'Settings',
       href: '#',
-      icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
-      ),
+      icon: <IconSettings className="h-6 w-6 flex-shrink-0" />,
     },
     {
       label: 'Logout',
       href: '#',
-      icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-6 w-6 flex-shrink-0" />
-      ),
+      icon: <IconArrowLeft className="h-6 w-6 flex-shrink-0" />,
     },
   ]
   const [open, setOpen] = useState(false)
@@ -50,7 +43,7 @@ export function CommonSidebar() {
       <Sidebar open={open} setOpen={setOpen}>
         <SidebarBody className="justify-between gap-10">
           <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-            {open ? <Logo /> : <LogoIcon />}
+            <LogoIcon />
             <div className="mt-8 flex flex-col gap-2">
               {links.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
@@ -73,8 +66,8 @@ export function CommonSidebar() {
 }
 export const Logo = () => {
   return (
-    <div className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20">
-      <Snowflake className="h-7 w-7 text-blue-500 " />
+    <div className="font-normal flex items-center text-sm text-black py-1 relative z-20">
+      <Snowflake className="h-8 w-8 text-blue-500 " />
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -86,9 +79,19 @@ export const Logo = () => {
   )
 }
 export const LogoIcon = () => {
+  const { open } = useSidebar()
   return (
-    <div className="font-normal flex space-x-2 items-center text-sm text-black py-1 relative z-20">
-      <Snowflake className="h-7 w-7 text-blue-500 " />
+    <div className="font-normal flex items-center gap-2 text-sm text-black py-1 relative z-20 px-2">
+      <Snowflake className="h-8 w-8 text-blue-500 " />
+      {open && (
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="font-medium text-black dark:text-white whitespace-pre text-base"
+        >
+          Billingfy
+        </motion.span>
+      )}
     </div>
   )
 }
