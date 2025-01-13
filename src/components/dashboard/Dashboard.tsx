@@ -318,7 +318,7 @@ export default function Dashboard() {
                     <TableCell className="text-center">
                       {customer.stb}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="text-center">
                       <Badge
                         variant={
                           customer.status === 'Active' ? 'success' : 'secondary'
@@ -327,10 +327,16 @@ export default function Dashboard() {
                         {customer.status}
                       </Badge>
                     </TableCell>
-                    <TableCell>₹{customer.amount}</TableCell>
-                    <TableCell>₹{customer.amount}</TableCell>
-                    <TableCell>{customer.expDate}</TableCell>
-                    <TableCell>
+                    <TableCell className="text-center">
+                      ₹{customer.amount}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      ₹{customer.amount}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {customer.expDate}
+                    </TableCell>
+                    <TableCell className="text-center">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                           <Button variant="ghost" className="h-8 w-8 p-0">
