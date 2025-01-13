@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 import {
   Search,
@@ -285,33 +283,41 @@ export default function Dashboard() {
             </div>
           </div>
           <div className="rounded-md border">
-            <Table>
+            <Table className="text-xs">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[100px] text-center">SI No</TableHead>
-                  <TableHead>Cust Id</TableHead>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Address</TableHead>
-                  <TableHead>Mobile No</TableHead>
-                  <TableHead>STB</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Amount</TableHead>
-                  <TableHead>Due</TableHead>
-                  <TableHead>Exp Date</TableHead>
-                  <TableHead className="w-[80px]">Action</TableHead>
+                  <TableHead className=" text-center">SI No</TableHead>
+                  <TableHead className="text-center">Cust Id</TableHead>
+                  <TableHead className="text-center ">Name</TableHead>
+                  <TableHead className="text-center">Address</TableHead>
+                  <TableHead className="text-center">Mobile No</TableHead>
+                  <TableHead className="text-center">STB</TableHead>
+                  <TableHead className="text-center">Status</TableHead>
+                  <TableHead className="text-center">Amount</TableHead>
+                  <TableHead className="text-center">Due</TableHead>
+                  <TableHead className="text-center">Exp Date</TableHead>
+                  <TableHead className="w-[80px] text-center">Action</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody className="h-[80%] overflow-y-auto">
                 {customers.map((customer) => (
                   <TableRow key={customer.id}>
                     <TableCell className="text-center">{customer.id}</TableCell>
-                    <TableCell>{customer.custId}</TableCell>
-                    <TableCell className="font-medium">
+                    <TableCell className="text-center">
+                      {customer.custId}
+                    </TableCell>
+                    <TableCell className="text-center mx-0 px-0">
                       {customer.name}
                     </TableCell>
-                    <TableCell>{customer.address}</TableCell>
-                    <TableCell>{customer.mobile}</TableCell>
-                    <TableCell>{customer.stb}</TableCell>
+                    <TableCell className="text-center">
+                      {customer.address}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {customer.mobile}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {customer.stb}
+                    </TableCell>
                     <TableCell>
                       <Badge
                         variant={
@@ -354,8 +360,8 @@ export default function Dashboard() {
               </TableBody>
             </Table>
           </div>
-          <div className="mt-4 flex justify-center absolute bg-white w-full bottom-2">
-            <Pagination>
+          <div className="flex justify-center absolute bg-white bottom-1 right-2 w-fit !text-xs">
+            <Pagination className="text-xs">
               <PaginationContent>
                 <PaginationItem>
                   <PaginationPrevious href="#" />

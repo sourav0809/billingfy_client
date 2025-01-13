@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     >
       <Sidebar />
       <CommonTopBar />
-      <div className="mt-[3rem] p-5 w-full h-[95%]">{children}</div>
+      <div className="mt-[3rem] p-5 w-full h-[96%]">{children}</div>
     </div>
   )
 }
