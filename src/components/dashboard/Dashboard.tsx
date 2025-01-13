@@ -288,16 +288,15 @@ export default function Dashboard() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[80px]">SI No</TableHead>
+                  <TableHead className="w-[100px] text-center">SI No</TableHead>
                   <TableHead>Cust Id</TableHead>
                   <TableHead>Name</TableHead>
                   <TableHead>Address</TableHead>
                   <TableHead>Mobile No</TableHead>
                   <TableHead>STB</TableHead>
                   <TableHead>Status</TableHead>
-                  <TableHead className="text-right">Amount</TableHead>
-                  <TableHead className="text-right">Received</TableHead>
-                  <TableHead className="text-right">Balance</TableHead>
+                  <TableHead>Amount</TableHead>
+                  <TableHead>Due</TableHead>
                   <TableHead>Exp Date</TableHead>
                   <TableHead className="w-[80px]">Action</TableHead>
                 </TableRow>
@@ -305,7 +304,7 @@ export default function Dashboard() {
               <TableBody className="h-[80%] overflow-y-auto">
                 {customers.map((customer) => (
                   <TableRow key={customer.id}>
-                    <TableCell>{customer.id}</TableCell>
+                    <TableCell className="text-center">{customer.id}</TableCell>
                     <TableCell>{customer.custId}</TableCell>
                     <TableCell className="font-medium">
                       {customer.name}
@@ -323,8 +322,7 @@ export default function Dashboard() {
                       </Badge>
                     </TableCell>
                     <TableCell>₹{customer.amount}</TableCell>
-                    <TableCell>₹{customer.received}</TableCell>
-                    <TableCell>₹{customer.balance}</TableCell>
+                    <TableCell>₹{customer.amount}</TableCell>
                     <TableCell>{customer.expDate}</TableCell>
                     <TableCell>
                       <DropdownMenu>
