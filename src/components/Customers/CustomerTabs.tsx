@@ -1,5 +1,5 @@
-import { Button } from '@/components/common/UI/button.tsx'
 import { Tabs, TabsList, TabsTrigger } from '@/components/common/UI/tabs.tsx'
+import AddCustomerDialog from '@/components/Customers/AddCustomerDialog.tsx'
 import { Users } from 'lucide-react'
 
 interface CustomerTabsProps {
@@ -23,9 +23,9 @@ const CustomerTabs: React.FC<CustomerTabsProps> = ({
           <TabsTrigger value="broadband">Broadband</TabsTrigger>
         </TabsList>
       </Tabs>
-      <Button variant="outline" size="icon">
+      <AddCustomerDialog>
         <Users className="h-4 w-4" />
-      </Button>
+      </AddCustomerDialog>
     </div>
   )
 }
