@@ -1,10 +1,5 @@
 import * as React from 'react'
-// import { CalendarIcon } from 'lucide-react'
-// import { addMonths, format } from 'date-fns'
-
-// import { cn } from '@/lib/utils'
 import { Button } from '@/components/common/UI/button.tsx'
-// import { Calendar } from '@/components/common/UI/calendar.tsx'
 import {
   Card,
   CardContent,
@@ -29,11 +24,6 @@ import {
   FormMessage,
 } from '@/components/common/UI/form.tsx'
 import { Input } from '@/components/common/UI/input.tsx'
-// import {
-//   Popover,
-//   PopoverContent,
-//   PopoverTrigger,
-// } from '@/components/common/UI/popover.tsx'
 import {
   Select,
   SelectContent,
@@ -87,7 +77,7 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
       <DialogTrigger asChild>
         <Button variant="outline">{children}</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-5xl max-h-[80vh]">
+      <DialogContent className="max-w-5xl h-[90vh]">
         <DialogHeader>
           <DialogTitle>Customer Information</DialogTitle>
           <DialogDescription>
@@ -95,29 +85,191 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
             existing information.
           </DialogDescription>
         </DialogHeader>
-        <ScrollArea className="h-[calc(80vh-6rem)] pr-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Basic Details</CardTitle>
-                  <CardDescription>
-                    Please fill in the basic information about the customer.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col gap-4">
-                    {/* 1st column  */}
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="">
+            <ScrollArea className="h-[calc(90vh-9rem)] pr-4">
+              <div className="space-y-6 mb-7">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Basic Details</CardTitle>
+                    <CardDescription>
+                      Please fill in the basic information about the customer.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col gap-4">
+                      {/* 1st column  */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter customer name"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter email address"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      {/* 2nd column  */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="mobile"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Mobile No</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter mobile number"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="area"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Area</FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select area" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {areas.map((area) => (
+                                    <SelectItem key={area} value={area}>
+                                      {area}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      {/* 3rd column */}
+                      <div className="grid grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
+                          name="employee"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Employee</FormLabel>
+                              <Select
+                                onValueChange={field.onChange}
+                                defaultValue={field.value}
+                              >
+                                <FormControl>
+                                  <SelectTrigger>
+                                    <SelectValue placeholder="Select employee" />
+                                  </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {employees.map((employee) => (
+                                    <SelectItem key={employee} value={employee}>
+                                      {employee}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name="balanceDue"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Balance Due</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Enter balance amount"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+
+                      {/* Address */}
+                      <div className="w-full">
+                        <FormField
+                          control={form.control}
+                          name="address"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Address</FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="Enter customer's full address"
+                                  className="resize-none h-[120px]"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Hardware Details</CardTitle>
+                    <CardDescription>
+                      Please fill the hardware details of the customer.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
                     <div className="grid grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
                         name="name"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Name</FormLabel>
+                            <FormLabel>Customer Id</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Enter customer name"
+                                placeholder="Enter customer Id"
                                 {...field}
                               />
                             </FormControl>
@@ -130,10 +282,10 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email</FormLabel>
+                            <FormLabel>Mac Address</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Enter email address"
+                                placeholder="Enter customer mac address"
                                 {...field}
                               />
                             </FormControl>
@@ -142,38 +294,32 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                         )}
                       />
                     </div>
+                  </CardContent>
+                </Card>
 
-                    {/* 2nd column  */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="mobile"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Mobile No</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Enter mobile number"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                {/* PLAN DETAILS OF CUSTOMER  */}
+                <Card className="">
+                  <CardHeader>
+                    <CardTitle>Plan Details</CardTitle>
+                    <CardDescription>
+                      Enter the plan details of the customer
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-col gap-2 w-full">
                       <FormField
                         control={form.control}
                         name="area"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Area</FormLabel>
+                            <FormLabel>Choose Plan</FormLabel>
                             <Select
                               onValueChange={field.onChange}
                               defaultValue={field.value}
                             >
                               <FormControl>
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Select area" />
+                                  <SelectValue placeholder="Please choose the desired plan" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
@@ -188,88 +334,39 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                           </FormItem>
                         )}
                       />
-                    </div>
-
-                    {/* 3rd column */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="employee"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Employee</FormLabel>
-                            <Select
-                              onValueChange={field.onChange}
-                              defaultValue={field.value}
-                            >
+                      <div className="w-full">
+                        <FormField
+                          control={form.control}
+                          name="address"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Plan Description</FormLabel>
                               <FormControl>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Select employee" />
-                                </SelectTrigger>
+                                <Textarea
+                                  placeholder="Enter customer's full address"
+                                  className="resize-none h-[120px]"
+                                  {...field}
+                                />
                               </FormControl>
-                              <SelectContent>
-                                {employees.map((employee) => (
-                                  <SelectItem key={employee} value={employee}>
-                                    {employee}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="balanceDue"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Balance Due</FormLabel>
-                            <FormControl>
-                              <Input
-                                placeholder="Enter balance amount"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
                     </div>
-
-                    {/* Right Column */}
-
-                    <div className="w-full">
-                      <FormField
-                        control={form.control}
-                        name="address"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Address</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Enter customer's full address"
-                                className="resize-none h-[120px]"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className="flex justify-end gap-4 sticky bottom-0 right-2  bg-background py-2 border-t">
-                <Button variant="outline" onClick={() => setOpen(false)}>
-                  Cancel
-                </Button>
-                <Button type="submit">Save Changes</Button>
+                  </CardContent>
+                </Card>
               </div>
-            </form>
-          </Form>
-        </ScrollArea>
+            </ScrollArea>
+
+            <div className="flex justify-end gap-4 pt-2 w-full">
+              <Button variant="outline" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit">Save Changes</Button>
+            </div>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   )

@@ -1,12 +1,12 @@
-// import Auth from './components/auth/Auth'
+import Auth from './components/auth/Auth'
 
-import AllCustomers from '@/components/Customers/AllCustomers.tsx'
+// import AllCustomers from '@/components/Customers/AllCustomers.tsx'
 
 const App = () => {
   return (
     <>
-      <AllCustomers />
-      {/* <Auth /> */}
+      {/* <AllCustomers /> */}
+      <Auth />
     </>
   )
 }
