@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { CalendarIcon } from 'lucide-react'
-import { addMonths, format } from 'date-fns'
+// import { CalendarIcon } from 'lucide-react'
+// import { addMonths, format } from 'date-fns'
 
-import { cn } from '@/lib/utils'
+// import { cn } from '@/lib/utils'
 import { Button } from '@/components/common/UI/button.tsx'
-import { Calendar } from '@/components/common/UI/calendar.tsx'
+// import { Calendar } from '@/components/common/UI/calendar.tsx'
 import {
   Card,
   CardContent,
@@ -29,11 +29,11 @@ import {
   FormMessage,
 } from '@/components/common/UI/form.tsx'
 import { Input } from '@/components/common/UI/input.tsx'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/common/UI/popover.tsx'
+// import {
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+// } from '@/components/common/UI/popover.tsx'
 import {
   Select,
   SelectContent,
@@ -95,7 +95,7 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
             existing information.
           </DialogDescription>
         </DialogHeader>
-        <ScrollArea className="h-[calc(80vh-8rem)] pr-4">
+        <ScrollArea className="h-[calc(80vh-6rem)] pr-4">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <Card>
@@ -106,9 +106,9 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-col gap-x-8 gap-y-6">
-                    {/* Left Column */}
-                    <div className="grid grid-rows-2 space-y-6">
+                  <div className="flex flex-col gap-4">
+                    {/* 1st column  */}
+                    <div className="grid grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
                         name="name"
@@ -143,26 +143,8 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                       />
                     </div>
 
-                    {/* Right Column */}
-
-                    <div className="grid grid-rows-3 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="address"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Address</FormLabel>
-                            <FormControl>
-                              <Textarea
-                                placeholder="Enter customer's full address"
-                                className="resize-none h-[120px]"
-                                {...field}
-                              />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                    {/* 2nd column  */}
+                    <div className="grid grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
                         name="mobile"
@@ -206,93 +188,71 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                           </FormItem>
                         )}
                       />
+                    </div>
 
-                      <div className="grid grid-cols-2 gap-4">
-                        <FormField
-                          control={form.control}
-                          name="employee"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Employee</FormLabel>
-                              <Select
-                                onValueChange={field.onChange}
-                                defaultValue={field.value}
-                              >
-                                <FormControl>
-                                  <SelectTrigger>
-                                    <SelectValue placeholder="Select employee" />
-                                  </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  {employees.map((employee) => (
-                                    <SelectItem key={employee} value={employee}>
-                                      {employee}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="balanceDue"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Balance Due</FormLabel>
-                              <FormControl>
-                                <Input
-                                  placeholder="Enter balance amount"
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                      </div>
+                    {/* 3rd column */}
+                    <div className="grid grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
-                        name="planExpiry"
+                        name="employee"
                         render={({ field }) => (
-                          <FormItem className="flex flex-col">
-                            <FormLabel>Plan Expiry</FormLabel>
-                            <Popover>
-                              <PopoverTrigger asChild>
-                                <FormControl>
-                                  <Button
-                                    variant={'outline'}
-                                    className={cn(
-                                      'w-full pl-3 text-left font-normal',
-                                      !field.value && 'text-muted-foreground',
-                                    )}
-                                  >
-                                    {field.value ? (
-                                      format(field.value, 'PPP')
-                                    ) : (
-                                      <span>Pick a date</span>
-                                    )}
-                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                  </Button>
-                                </FormControl>
-                              </PopoverTrigger>
-                              <PopoverContent
-                                className="w-auto p-0"
-                                align="start"
-                              >
-                                <Calendar
-                                  mode="single"
-                                  selected={field.value}
-                                  onSelect={field.onChange}
-                                  disabled={(date) =>
-                                    date < new Date() ||
-                                    date > addMonths(new Date(), 12)
-                                  }
-                                  initialFocus
-                                />
-                              </PopoverContent>
-                            </Popover>
+                          <FormItem>
+                            <FormLabel>Employee</FormLabel>
+                            <Select
+                              onValueChange={field.onChange}
+                              defaultValue={field.value}
+                            >
+                              <FormControl>
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select employee" />
+                                </SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {employees.map((employee) => (
+                                  <SelectItem key={employee} value={employee}>
+                                    {employee}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="balanceDue"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Balance Due</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Enter balance amount"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    {/* Right Column */}
+
+                    <div className="w-full">
+                      <FormField
+                        control={form.control}
+                        name="address"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Address</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                placeholder="Enter customer's full address"
+                                className="resize-none h-[120px]"
+                                {...field}
+                              />
+                            </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -301,7 +261,7 @@ const AddCustomerDialog = ({ children }: { children: React.ReactNode }) => {
                   </div>
                 </CardContent>
               </Card>
-              <div className="flex justify-end gap-4 sticky bottom-0 bg-background py-4 border-t">
+              <div className="flex justify-end gap-4 sticky bottom-0 right-2  bg-background py-2 border-t">
                 <Button variant="outline" onClick={() => setOpen(false)}>
                   Cancel
                 </Button>
