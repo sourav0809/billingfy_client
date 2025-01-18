@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { Card, CardContent, CardHeader } from '@/components/common/UI/card.tsx'
 
 import Layout from '@/components/common/Layout.tsx'
-import CustomerTabs from '@/components/Customers/CustomerTabs.tsx'
-import SelectShowTotalCustomer from '@/components/Customers/SelectShowTotalCustomer.tsx'
-import SearchCustomerWithFilter from '@/components/Customers/SearchCustomerWithFilter.tsx'
-import CustomersTable from '@/components/Customers/CustomersTable.tsx'
+import CustomerTabs from '@/components/customers/CustomerTabs'
+import SelectShowTotalCustomer from '@/components/customers/SelectShowTotalCustomer'
+import SearchCustomerWithFilter from '@/components/customers/SearchCustomerWithFilter'
+import CustomersTable from '@/components/customers/CustomersTable'
 
 const AllCustomers = () => {
   const [activeTab, setActiveTab] = useState('cable-tv')

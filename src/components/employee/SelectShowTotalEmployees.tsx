@@ -8,7 +8,7 @@ import {
   PaginationPrevious,
 } from '@/components/common/UI/pagination.tsx'
 
-const SelectShowTotalCustomer = () => {
+const SelectShowTotalEmployees = () => {
   return (
     <div className="flex justify-center w-fit !text-xs">
       <Pagination className="text-xs">
@@ -39,4 +39,4 @@ const SelectShowTotalCustomer = () => {
   )
 }
 
-export default SelectShowTotalCustomer
+export default SelectShowTotalEmployees

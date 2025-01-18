@@ -1,5 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/common/UI/tabs.tsx'
-import AddCustomerDialog from '@/components/Customers/AddCustomerDialog.tsx'
+import AddCustomerDialog from '@/components/customers/AddCustomerDialog'
 import { Users } from 'lucide-react'
 
 interface CustomerTabsProps {

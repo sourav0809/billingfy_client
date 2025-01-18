@@ -2,14 +2,14 @@ import React, { createContext, useContext, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   LayoutDashboard,
-  FileEdit,
   Tags,
-  FolderOpen,
   Users,
-  Settings,
-  LogOut,
   Snowflake,
+  HomeIcon,
+  UserRound,
 } from 'lucide-react'
+import { pathNames } from '@/constants/path.const.ts'
+import { Link, useNavigate } from 'react-router-dom'
 
 const SidebarContext = createContext<{
   isExpanded: boolean
@@ -33,19 +33,21 @@ const SidebarProvider: React.FC<{ children: React.ReactNode }> = ({
 const MenuItem: React.FC<{
   icon: React.ReactNode
   text: string
-}> = ({ icon, text }) => {
+  path: string
+}> = ({ icon, text, path }) => {
   const { isExpanded } = useContext(SidebarContext)
+  const activePath = window.location.pathname
 
   return (
     <div className="relative">
       <div
         className={`
           flex items-center px-3 py-2 z-50
-          hover:bg-gray-100 rounded-md cursor-pointer w-full ${text === 'Dashboard' ? 'bg-gray-100' : ''}
+          hover:bg-gray-100 rounded-md cursor-pointer w-full ${activePath === path ? 'bg-gray-100' : ''}
         `}
       >
         <div
-          className={`${text === 'Dashboard' ? '!text-blue-500' : 'text-muted-foreground'}`}
+          className={`${activePath === path ? '!text-blue-500' : 'text-muted-foreground'}`}
         >
           {icon}
         </div>
@@ -80,6 +82,42 @@ const Sidebar = () => {
 
 const SidebarContent = () => {
   const { isExpanded, setIsExpanded } = useContext(SidebarContext)
+  const navigate = useNavigate()
+
+  const navigationPaths = [
+    {
+      label: 'Dashboard',
+      icon: <LayoutDashboard className="h-5 w-5" />,
+      path: pathNames.DASHBOARD,
+      onClick: () => {
+        navigate(pathNames.DASHBOARD)
+      },
+    },
+    {
+      label: 'Users',
+      icon: <Users className="h-5 w-5" />,
+      path: pathNames.CUSTOMERS,
+      onClick: () => navigate(pathNames.CUSTOMERS),
+    },
+    {
+      label: 'Plans',
+      icon: <Tags className="h-5 w-5" />,
+      path: pathNames.PLANS,
+      onClick: () => navigate(pathNames.PLANS),
+    },
+    {
+      label: 'Area',
+      icon: <HomeIcon className="h-5 w-5" />,
+      path: pathNames.AREA,
+      onClick: () => navigate(pathNames.AREA),
+    },
+    {
+      label: 'Employee',
+      icon: <UserRound className="h-5 w-5" />,
+      path: pathNames.EMPLOYEES,
+      onClick: () => navigate(pathNames.EMPLOYEES),
+    },
+  ]
 
   return (
     <motion.div
@@ -119,29 +157,24 @@ const SidebarContent = () => {
 
       {/* Navigation */}
       <nav className="px-2 py-2 flex flex-col gap-2 mt-2">
-        <MenuItem
-          icon={<LayoutDashboard className="h-5 w-5" />}
-          text="Dashboard"
-        />
-        <MenuItem icon={<FileEdit className=" h-5 w-5" />} text="Posts" />
-        <MenuItem
-          icon={<FolderOpen className=" h-5 w-5" />}
-          text="Categories"
-        />
-        <MenuItem icon={<Tags className="h-5 w-5" />} text="Tags" />
-        <MenuItem icon={<Users className=" h-5 w-5" />} text="Users" />
-        <MenuItem icon={<Settings className=" h-5 w-5" />} text="Account" />
+        {navigationPaths.map((item) => {
+          return (
+            <Link key={item.label} to={item.path}>
+              <MenuItem icon={item.icon} text={item.label} path={item.path} />
+            </Link>
+          )
+        })}
       </nav>
 
       {/* Footer */}
-      <div className="absolute bottom-0 w-full p-2">
+      {/* <div className="absolute bottom-0 w-full p-2">
         <div className="border rounded-md">
           <MenuItem
             icon={<LogOut className="text-muted-foreground h-5 w-5" />}
             text="Sign out"
           />
         </div>
-      </div>
+      </div> */}
     </motion.div>
   )
 }
