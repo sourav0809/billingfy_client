@@ -1,3 +1,4 @@
+import Area from '@/components/area/Area.tsx'
 import Auth from '@/components/auth/Auth.tsx'
 import AllCustomers from '@/components/customers/AllCustomers.tsx'
 import Employee from '@/components/employee/Employees'
@@ -17,6 +18,10 @@ const AppRouter = createBrowserRouter([
   {
     path: pathNames.EMPLOYEES,
     element: <Employee />,
+  },
+  {
+    path: pathNames.AREA,
+    element: <Area />,
   },
   {
     path: '*',
